@@ -1,0 +1,29 @@
+{
+  "common": {
+    "back": "Back",
+    "search": "Search",
+    "notFound": "Page not found",
+    "returnHome": "Return to home"
+  },
+  "home": {
+    "title": "The Throw Guide - CS2 Grenade Throws"
+  },
+  "maps": {
+    "backToMaps": "Back to Maps"
+  },
+  "grenades": {
+    "type": "Grenade Type",
+    "difficulty": "Difficulty",
+    "all": "All",
+    "smoke": "Smoke",
+    "flash": "Flash",
+    "molotov": "Molotov",
+    "noGrenades": "No grenades found for this map",
+    "comingSoon": "Useful grenade throws will appear here soon"
+  },
+  "filters": {
+    "search": "Search grenades...",
+    "type": "Grenade Type",
+    "difficulty": "Difficulty"
+  }
+}

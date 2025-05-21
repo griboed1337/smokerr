@@ -57,3 +57,72 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Стили для компонентов в разных темах */
+.dark {
+  --bg-primary: #000000;
+  --bg-secondary: #111111;
+  --bg-tertiary: #1f2937;
+  --text-primary: #ffffff;
+  --text-secondary: #d1d5db;
+  --text-tertiary: #9ca3af;
+  --border-color: #2d3748;
+}
+
+.light {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+  --text-primary: #111827;
+  --text-secondary: #374151;
+  --text-tertiary: #6b7280;
+  --border-color: #e5e7eb;
+}
+
+/* Применяем переменные к основным классам */
+.bg-gray-100 {
+  background-color: var(--bg-tertiary);
+}
+
+.dark .bg-gray-800,
+.dark .bg-gray-700 {
+  background-color: var(--bg-tertiary);
+}
+
+.light .bg-gray-800,
+.light .bg-gray-700 {
+  background-color: var(--bg-tertiary);
+}
+
+.text-gray-300,
+.text-gray-700 {
+  color: var(--text-secondary);
+}
+
+.border-gray-200,
+.border-gray-700 {
+  border-color: var(--border-color);
+}
+
+/* Фиксируем цвет текста на картах */
+.text-white {
+  color: white !important;
+}
+
+/* Плавные переходы для всех элементов */
+html.transitioning * {
+  transition-duration: 200ms !important;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter,
+    backdrop-filter !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Исключаем переходы для некоторых элементов */
+.no-transition,
+.no-transition *,
+button:active,
+button:focus,
+input:focus,
+input:active {
+  transition: none !important;
+}

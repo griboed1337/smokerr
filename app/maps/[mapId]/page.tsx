@@ -38,15 +38,18 @@ export default function MapPage({ params }: { params: { mapId: string } }) {
   }
 
   return (
-    <main className="min-h-screen p-4 md:p-8 lg:p-12 bg-black">
+    <main className="min-h-screen p-4 md:p-8 lg:p-12">
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-8">
-          <Link href="/">
-            <Button variant="ghost" className="gap-2">
-              <ChevronLeft className="h-4 w-4" />
-              Back to Maps
-            </Button>
-          </Link>
+          <div className="flex items-center gap-4">
+            <div className="text-base font-light tracking-wider uppercase">smokerr</div>
+            <Link href="/">
+              <Button variant="ghost" className="gap-2">
+                <ChevronLeft className="h-4 w-4" />
+                Back to Maps
+              </Button>
+            </Link>
+          </div>
           <div className="flex items-center gap-2">
             <LanguageSwitcher />
             <ThemeToggle />

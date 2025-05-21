@@ -19,9 +19,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru" suppressHydrationWarning>
-      <body className={`${inter.className} bg-black text-white`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          {children}
+      <body className={inter.className}>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <div className="min-h-screen transition-colors duration-300 ease-in-out bg-white dark:bg-black text-black dark:text-white">
+            {children}
+          </div>
         </ThemeProvider>
       </body>
     </html>

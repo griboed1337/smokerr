@@ -80,15 +80,18 @@ export default async function GrenadePage({ params }: PageProps) {
   }
 
   return (
-    <main className="min-h-screen p-4 md:p-8 lg:p-12 bg-black">
+    <main className="min-h-screen p-4 md:p-8 lg:p-12">
       <div className="max-w-5xl mx-auto">
         <div className="flex justify-between items-center mb-8">
-          <Link href={`/maps/${params.mapId}`}>
-            <Button variant="ghost" className="gap-2">
-              <ChevronLeft className="h-4 w-4" />
-              Back to {map.name}
-            </Button>
-          </Link>
+          <div className="flex items-center gap-4">
+            <div className="text-base font-light tracking-wider uppercase">smokerr</div>
+            <Link href={`/maps/${params.mapId}`}>
+              <Button variant="ghost" className="gap-2">
+                <ChevronLeft className="h-4 w-4" />
+                Back to {map.name}
+              </Button>
+            </Link>
+          </div>
           <div className="flex items-center gap-2">
             <LanguageSwitcher />
             <ThemeToggle />
@@ -104,7 +107,7 @@ export default async function GrenadePage({ params }: PageProps) {
             <div className="flex items-center gap-4 mb-4">
               <div className="flex items-center gap-2">
                 <span className="text-sm font-medium">Тип:</span>
-                <span className="text-sm px-2 py-1 rounded bg-gray-800">
+                <span className="text-sm px-2 py-1 rounded bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 transition-colors duration-300">
                   {grenade.grenadeType === "smoke"
                     ? "Дымовая"
                     : grenade.grenadeType === "flash"
@@ -125,7 +128,9 @@ export default async function GrenadePage({ params }: PageProps) {
 
           <div>
             <h1 className="text-2xl font-bold mb-4">{grenade.title}</h1>
-            <p className="text-gray-300 mb-6">{grenade.description}</p>
+            <p className="text-gray-700 dark:text-gray-300 mb-6 transition-colors duration-300">
+              {grenade.description}
+            </p>
 
             <div className="aspect-video relative overflow-hidden rounded-lg">
               <Image

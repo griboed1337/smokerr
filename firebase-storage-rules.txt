@@ -1,0 +1,17 @@
+// Правила безопасности Firebase Storage
+// Эти правила нужно скопировать в консоль Firebase
+
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Разрешаем чтение всем пользователям
+    match /{allPaths=**} {
+      allow read;
+    }
+    
+    // Разрешаем запись в папку grenades только аутентифицированным пользователям
+    match /grenades/{fileName} {
+      allow write: if request.auth != null;
+    }
+  }
+}

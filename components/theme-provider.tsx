@@ -1,11 +1,21 @@
 "use client"
 import { ThemeProvider as NextThemesProvider } from "next-themes"
 import type { ThemeProviderProps } from "next-themes"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
+  // Используем состояние для отслеживания монтирования компонента
+  const [mounted, setMounted] = useState(false)
+
+  // Устанавливаем mounted в true после монтирования компонента
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   // Добавляем обработчик события смены темы
   useEffect(() => {
+    if (!mounted) return
+
     const handleThemeChange = () => {
       // Добавляем класс для анимации перехода
       document.documentElement.classList.add("transitioning")
@@ -23,7 +33,13 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
       // Удаляем слушатель при размонтировании
       window.removeEventListener("themeChange", handleThemeChange)
     }
-  }, [])
+  }, [mounted])
+
+  // Если компонент не смонтирован, возвращаем только дочерние элементы без провайдера темы
+  // Это предотвращает гидратацию на сервере
+  if (!mounted) {
+    return <>{children}</>
+  }
 
   return <NextThemesProvider {...props}>{children}</NextThemesProvider>
 }

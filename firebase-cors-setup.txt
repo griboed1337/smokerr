@@ -1,0 +1,68 @@
+# Настройка CORS для Firebase Storage
+
+Если у вас возникают проблемы с загрузкой файлов в Firebase Storage, возможно, это связано с настройками CORS. Вот как настроить CORS для Firebase Storage:
+
+## Установка Firebase CLI
+
+1. Установите Firebase CLI, если у вас его еще нет:
+```
+npm install -g firebase-tools
+```
+
+2. Войдите в свой аккаунт Firebase:
+```
+firebase login
+```
+
+## Настройка CORS
+
+1. Создайте файл `cors.json` со следующим содержимым:
+```json
+[
+  {
+    "origin": ["*"],
+    "method": ["GET", "POST", "PUT", "DELETE", "HEAD"],
+    "maxAgeSeconds": 3600
+  }
+]
+```
+
+2. Используйте gsutil для установки правил CORS (требуется установка Google Cloud SDK):
+```
+gsutil cors set cors.json gs://smokerr-9bdc4.appspot.com
+```
+
+Или вы можете настроить CORS через консоль Firebase:
+
+1. Перейдите в [Firebase Console](https://console.firebase.google.com/)
+2. Выберите ваш проект
+3. Перейдите в раздел "Storage"
+4. Перейдите на вкладку "Rules"
+5. Добавьте следующие правила:
+
+```
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read;
+      allow write: if request.auth != null;
+    }
+  }
+}
+```
+
+## Проверка настроек CORS
+
+Вы можете проверить текущие настройки CORS с помощью команды:
+```
+gsutil cors get gs://smokerr-9bdc4.appspot.com
+```
+
+## Дополнительная информация
+
+Если проблемы с загрузкой файлов продолжаются, проверьте следующее:
+
+1. Убедитесь, что пользователь аутентифицирован (если правила требуют аутентификации)
+2. Проверьте консоль браузера на наличие ошибок CORS
+3. Убедитесь, что URL вашего приложения добавлен в список разрешенных доменов в настройках Firebase Authentication
+4. Проверьте, что размер файла не превышает ограничения Firebase Storage

@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { ChevronLeft } from "lucide-react"
+import { ChevronLeft, Plus } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -66,7 +66,15 @@ export default function MapPage({ params }: { params: { mapId: string } }) {
             <h1 className="text-3xl font-bold">{map.name}</h1>
           </div>
 
-          <GrenadeFilters />
+          <div className="flex justify-between items-center mb-4">
+            <GrenadeFilters />
+            <Link href="/add-grenade">
+              <Button variant="outline" className="gap-2">
+                <Plus className="h-4 w-4" />
+                Добавить раскидку
+              </Button>
+            </Link>
+          </div>
         </div>
 
         <GrenadeGrid mapId={map.id} />
